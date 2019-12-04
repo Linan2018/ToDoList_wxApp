@@ -1,0 +1,20 @@
+<view class='tabbar-container'>
+  <view class='tabbar'>
+  <!-- 页签 -->
+    <block wx:for="{{tabItems}}" wx:key="ti+{{index}}">
+      <view id="{{index}}"
+            class='tabbar-item'
+            style='{{ activedIndex == index ? ("color: " + activedColor) : "" }}'      
+            bindtap="clickTab">
+        <view class="tabbar-title">{{item}}</view>
+      </view>
+    </block>
+    <!-- 
+    	slider 滑块，会随着选中的页签而滑动至对应的位置,
+    	使用了CSS3的translateX属性 
+    	-->
+    <view class='selected-slider'
+          style="transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);background-color: {{activedColor}}">
+    </view>
+  </view>
+</view>

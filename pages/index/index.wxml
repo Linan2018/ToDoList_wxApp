@@ -1,0 +1,113 @@
+<!--index.wxml-->
+
+<view class="tab"> 
+ <tabbar tab-items="{{tabOptions}}" actived-color="green" bind:tab-change="onTabChange"> 
+ </tabbar> 
+</view> 
+<view class="tab-content tab-{{currentTabIndex}}">
+
+<view wx:if="{{currentTabIndex == 1}}">
+  <view style="height:20rpx"> 
+    <text style="font-size: 40rpx">
+    当前共有<text style="color: red">{{list.length-complete}}</text>项待办任务</text>
+  </view>
+</view>
+
+<view wx:if="{{currentTabIndex == 2}}">
+  <view style="height:20rpx"> 
+    <text style="font-size: 40rpx">
+    当前共有<text style="color: red">{{complete}}</text>项已完成任务</text>
+  </view>
+</view>
+
+<view wx:if="{{currentTabIndex == 0}}">
+  <view style="height:250rpx"> 
+  <text style="font-size: 40rpx">
+    当前共有<text style="color: red">{{list.length}}</text>项任务 
+    <text style="color: red">{{list.length-complete}}</text>项待办任务 
+    <text style="color: red">{{complete}}</text>项已完成任务
+  </text> 
+  </view> 
+  
+  <view class="section" style="height: 100rpx"> 
+   <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"> 
+    <view class="picker"> 
+     <text style="font-size: 50rpx">
+       优先级：<text style="text-decoration: underline">{{array[index]}}</text> 
+     </text> 
+    </view> 
+   </picker> 
+  </view> 
+  <view class="section" style="height: 100rpx"> 
+   <picker mode="date" value="{{date}}" start="2019-01-01" end="2022-12-31" bindchange="bindDateChange"> 
+    <view class="picker"> 
+     <text style="font-size: 50rpx">
+       日期: <text style="text-decoration: underline">{{date}}</text> 
+     </text> 
+    </view> 
+   </picker> 
+  </view> 
+  <view class="section" style="height: 150rpx"> 
+   <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange"> 
+    <view class="picker"> 
+     <text style="font-size: 50rpx">
+       时间: <text style="text-decoration: underline">{{time}}</text> 
+     </text> 
+    </view> 
+   </picker> 
+  </view> 
+  <view class="input"> 
+   <input bindinput="bindKeyInput" placeholder="请输入任务名称" value="{{inputValue}}" /> 
+   <button bindtap="add" plain="true">添加任务</button> 
+  </view> 
+ </view> 
+ <view class="container"> 
+  <!-- <view><text>未完成</text></view> --> 
+  <view class="list"> 
+   <view wx:if="{{currentTabIndex == 0 || currentTabIndex == 1}}"> 
+    <block wx:for="{{list}}" wx:key="{{item._id}}" style="height:30rpx;"> 
+     <view wx:if="{{item.checked == false}}"> 
+      <view class="pri"> 
+       <text>{{prilist[item.pri]}}</text> 
+      </view> 
+      <view class="date"> 
+       <text>{{item.date}} {{item.time}}</text> 
+      </view> 
+      <view class="content" style="flex-direction:row;"> 
+       <view class="left"> 
+        <checkbox-group bindchange="change" data-index="{{index}}"> 
+         <checkbox value="{{item.checked}}" checked="{{item.checked}}" /> 
+        </checkbox-group> 
+       </view> 
+       <view> 
+        <text>{{item.value}}</text> 
+       </view> 
+       <view class="right"> 
+        <button type="warn" bindtap="remove" data-index="{{index}}" size="mini">删除</button> 
+       </view> 
+      </view> 
+     </view> 
+    </block> 
+   </view> 
+   <view wx:if="{{currentTabIndex == 0 || currentTabIndex == 2}}"> 
+    <block wx:for="{{list}}" wx:key="{{item._id}}" style="height:30rpx;"> 
+     <view wx:if="{{item.checked == true}}"> 
+      <view class="content" style="flex-direction:row;"> 
+       <view class="left"> 
+        <checkbox-group bindchange="change" data-index="{{index}}"> 
+         <checkbox value="{{item.checked}}" checked="{{item.checked}}" /> 
+        </checkbox-group> 
+       </view> 
+       <view> 
+        <text>{{item.value}}</text> 
+       </view> 
+       <view class="right"> 
+        <button type="warn" bindtap="remove" data-index="{{index}}" size="mini">删除</button> 
+       </view> 
+      </view> 
+     </view> 
+    </block> 
+   </view> 
+  </view> 
+ </view> 
+</view> 

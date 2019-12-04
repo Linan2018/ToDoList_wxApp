@@ -1,0 +1,4 @@
+{
+  "navigationBarTitleText": "ToDo清单",
+  "usingComponents": {"tabbar": "/components/tabbar"}
+}

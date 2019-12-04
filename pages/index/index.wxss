@@ -1,0 +1,60 @@
+
+/**index.wxss**/
+.input{ padding: 20rpx}
+
+.list view{ padding:10rpx 20rpx; overflow: hidden}
+.list view text{ display: inline-block; line-height: 92rpx  }
+.list view button{ width: 200rpx; display: inline-block;}
+
+.content{
+  display: flex;
+  flex-direction: row;
+}
+
+.right{
+position: absolute;
+right: 0;
+}
+
+.left{
+position: absolute;
+left: 0;
+display: flex;
+flex-direction: row;
+}
+.tab-content{
+  margin-top: 2rpx;
+  height: 0px;
+  width: 100%;
+  text-align: center;
+}
+.tab-0{
+  position: absolute;
+  height: 100%;
+}
+.tab-1{
+  position: absolute;
+  background-color: #FFFFCC;
+  height: 100%;
+}
+.tab-2{
+  position: absolute;
+  background-color: #CCFFFF;
+  height: 100%;
+}
+
+.date{
+  display: inline;
+  left: 0;
+  font-size: 30rpx;
+  color: #999999;
+}
+
+
+.pri{
+  position: absolute;
+  display: inline;
+  left: 0;
+  font-size: 40rpx;
+  color: red;
+}
